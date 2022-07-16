@@ -1,7 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 function FilmScreen(): JSX.Element {
+  const params = useParams();
+
+  if (params.id) {
+    // eslint-disable-next-line no-console
+    console.log(params);
+  }
+
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
