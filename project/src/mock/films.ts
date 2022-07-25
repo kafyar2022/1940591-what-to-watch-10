@@ -4,7 +4,8 @@ export const films: Films = [
   {
     id: 1,
     title: 'Fantastic Beasts: The Crimes of Grindelwald',
-    poster: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+    cover: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
     genre: ['Crime', 'Documentary'],
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse sint eaque fugit, ratione numquam voluptate facere error consectetur sapiente, quidem ad nobis',
@@ -18,7 +19,8 @@ export const films: Films = [
   }, {
     id: 2,
     title: 'Bohemian Rhapsody',
-    poster: 'img/bohemian-rhapsody.jpg',
+    cover: 'img/bohemian-rhapsody.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
     genre: ['Romance'],
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam magnam sapiente sit vitae! Laudantium, voluptates sint!',
@@ -32,7 +34,8 @@ export const films: Films = [
   }, {
     id: 3,
     title: 'Macbeth',
-    poster: 'img/macbeth.jpg',
+    cover: 'img/macbeth.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://vod-progressive.akamaized.net/exp=1658737956~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F1894%2F27%2F684472013%2F3157002732.mp4~hmac=7204e65e85096d07b0d680f1ecbbf49ebc216cf033e8b5b4a12a46a4b0b7b704/vimeo-prod-skyfire-std-us/01/1894/27/684472013/3157002732.mp4',
     genre: ['Sci-Fi'],
     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ad nemo provident? Repellat nemo dolorum doloremque sequi vel atque necessitatibus repudiandae adipisci, beatae odit ut rerum voluptates error autem laudantium',
@@ -46,7 +49,8 @@ export const films: Films = [
   }, {
     id: 4,
     title: 'Aviator',
-    poster: 'img/aviator.jpg',
+    cover: 'img/aviator.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://vod-progressive.akamaized.net/exp=1658738488~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F399%2F29%2F726996990%2F3371083255.mp4~hmac=09cfce934d72f580b434cff9b51b17ca1ab4411f32663b29621fe654e6c80416/vimeo-prod-skyfire-std-us/01/399/29/726996990/3371083255.mp4?filename=file.mp4',
     genre: ['Comedies', 'Horror'],
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur nihil amet ad! Libero, pariatur, unde soluta minima provident, temporibus dolore cum excepturi dolores dolor officiis ducimus',
@@ -60,7 +64,8 @@ export const films: Films = [
   }, {
     id: 5,
     title: 'We need to talk about Kevin',
-    poster: 'img/we-need-to-talk-about-kevin.jpg',
+    cover: 'img/we-need-to-talk-about-kevin.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://player.vimeo.com/progressive_redirect/playback/716706676/rendition/360p/file.mp4?loc=external&oauth2_token_id=57447761&signature=b9b1fc5b6e678e6bc37de5db67536760c1719fd6685df75c7f0ecb3f10f8b9cd',
     genre: ['Dramas', 'Thrillers'],
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo sint cum corporis!',
@@ -74,7 +79,8 @@ export const films: Films = [
   }, {
     id: 6,
     title: 'What We Do in the Shadows',
-    poster: 'img/what-we-do-in-the-shadows.jpg',
+    cover: 'img/what-we-do-in-the-shadows.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://vod-progressive.akamaized.net/exp=1658738528~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F70%2F26%2F650353455%2F2984183843.mp4~hmac=172f258b6b89ee73d314d9ab14a9f0fda9e7ee608e8d536ecbd7635d52360e65/vimeo-prod-skyfire-std-us/01/70/26/650353455/2984183843.mp4',
     genre: ['Mystery'],
     description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minima et recusandae distinctio corporis quam quae veritatis. Autem culpa rem, quia pariatur optio rerum ipsam dolor ullam, totam amet assumenda aspernatur nisi, inventore fugiat doloribus.',
@@ -88,7 +94,8 @@ export const films: Films = [
   }, {
     id: 7,
     title: 'Revenant',
-    poster: 'img/revenant.jpg',
+    cover: 'img/revenant.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://vod-progressive.akamaized.net/exp=1658738604~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2983%2F28%2F714915842%2F3314672617.mp4~hmac=34f4ec16ad5d34bbcbcbaa037d2c5f5454d006674fd2e311160eee9e5e6eefc3/vimeo-prod-skyfire-std-us/01/2983/28/714915842/3314672617.mp4?filename=file.mp4',
     genre: ['Sci-Fi'],
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur facilis id dignissimos, provident commodi ea expedita non quibusdam accusamus. Autem exercitationem, asperiores repellendus sed laboriosam numquam veritatis?',
@@ -102,7 +109,8 @@ export const films: Films = [
   }, {
     id: 8,
     title: 'Johnny English',
-    poster: 'img/johnny-english.jpg',
+    cover: 'img/johnny-english.jpg',
+    poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://player.vimeo.com/progressive_redirect/playback/694124248/rendition/360p?loc=external&oauth2_token_id=57447761&signature=1563b3933cb900218850d211ea9f8a88eb0ccd40c50ee18e5b512db65f91aee7',
     genre: ['Crime', 'Comedies', 'Romance'],
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque minus nulla officia corporis, delectus inventore quidem, facilis totam unde aliquid, impedit fuga labore? Dignissimos, aliquam iure velit sunt voluptate culpa!',

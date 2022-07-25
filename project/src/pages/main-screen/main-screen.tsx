@@ -1,20 +1,23 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import dayjs from 'dayjs';
+import { generatePath, useNavigate } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
+import { AppRoute } from '../../const';
 import { Films } from '../../types/film';
 
-type MainScrenProps = {
+type MainScreenProps = {
   films: Films;
 }
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
-export default function MainScreen({ films }: MainScrenProps): JSX.Element {
+export default function MainScreen({ films }: MainScreenProps): JSX.Element {
   const promoFilm = films[films.findIndex((film) => (film.promo === true))];
+  const navigate = useNavigate();
 
   return (
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoFilm.poster} alt={promoFilm.title} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
@@ -39,7 +42,7 @@ export default function MainScreen({ films }: MainScrenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width={218} height={327} />
+              <img src={promoFilm.cover} alt={promoFilm.title} width={218} height={327} />
             </div>
             <div className="film-card__desc">
               <h2 className="film-card__title">{promoFilm.title}</h2>
@@ -48,7 +51,7 @@ export default function MainScreen({ films }: MainScrenProps): JSX.Element {
                 <span className="film-card__year">{dayjs(promoFilm.releaseDate).format('YYYY')}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(generatePath(AppRoute.Player, { id: String(promoFilm.id) }))}>
                   <svg viewBox="0 0 19 19" width={19} height={19}>
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -102,7 +105,7 @@ export default function MainScreen({ films }: MainScrenProps): JSX.Element {
             </li>
           </ul>
 
-          <FilmList films={films}/>
+          <FilmList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

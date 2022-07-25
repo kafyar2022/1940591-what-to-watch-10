@@ -1,16 +1,23 @@
 import { useParams } from 'react-router-dom';
+import { Films } from '../../types/film';
+import NotFoundScreen from '../not-found/not-found';
 
-export default function PlayerScreen(): JSX.Element {
+type PlayerScreenProps = {
+  films: Films;
+}
+
+export default function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
   const params = useParams();
 
-  if (params.id) {
-    // eslint-disable-next-line no-console
-    console.log(params);
+  if (!params.id) {
+    return <NotFoundScreen />;
   }
+
+  const playFilm = films[films.findIndex((film) => (film.id === Number(params.id)))];
 
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg" />
+      <video src={playFilm.video} className="player__video" poster={playFilm.poster} />
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">

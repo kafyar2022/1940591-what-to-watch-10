@@ -1,6 +1,7 @@
 export type Film = {
   id: number;
   title: string;
+  cover: string;
   poster: string;
   video: string;
   genre: string[];
