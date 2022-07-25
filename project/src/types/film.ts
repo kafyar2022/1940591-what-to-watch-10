@@ -10,6 +10,7 @@ export type Film = {
   runTime: number;
   releaseDate: Date;
   rating: number;
+  promo: boolean;
   reviews: number[];
 };
 

@@ -7,26 +7,24 @@ import MyListScreen from '../../pages/my-list-screen/my-list-screen';
 import NotFoundScreen from '../../pages/not-found/not-found';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
+import { Films } from '../../types/film';
 import PrivateRoute from '../private-route/private-route';
 
-type PromoFilm = {
-  title: string;
-  genre: string;
-  releaseDate: string;
-}
-
 type AppScreenProps = {
-  promoFilm: PromoFilm;
-  filmsCount: number;
+  films: Films;
 }
 
-function App({ promoFilm, filmsCount }: AppScreenProps): JSX.Element {
+function App({ films }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainScreen promoFilm={promoFilm} filmsCount={filmsCount} />}
+          element={
+            <MainScreen
+              films={films}
+            />
+          }
         />
         <Route
           path={AppRoute.SignIn}
