@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import { films } from './mock/films';
 
 const Setting = {
-  PROMO_FILM: {
-    title: 'The Grand Budapest Hotel',
-    genre: 'Drama',
-    releaseDate: '2014',
-  },
-  FILMS_COUNT: 20,
+  FILMS: films,
 };
 
 const root = ReactDOM.createRoot(
@@ -18,8 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      promoFilm={Setting.PROMO_FILM}
-      filmsCount={Setting.FILMS_COUNT}
+      films={Setting.FILMS}
     />
   </React.StrictMode>,
 );

@@ -1,14 +1,23 @@
-function SmallFilmCard(): JSX.Element {
+import { generatePath, Link, useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import { Film } from '../../types/film';
+
+type SmallFilmCardProps = {
+  film: Film;
+  onVideo: () => void;
+}
+
+export default function SmallFilmCard({ film, onVideo }: SmallFilmCardProps): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image">
-        <img src="img/aviator.jpg" alt="Aviator" width={280} height={175} />
+      <div className="small-film-card__image" onMouseOver={onVideo} onClick={() => navigate(generatePath(AppRoute.Film, { id: String(film.id) }))}>
+        <img src={film.cover} alt={film.title} width={280} height={175} />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Aviator</a>
+        <Link to={generatePath(AppRoute.Film, { id: String(film.id) })} className="small-film-card__link">{film.title}</Link>
       </h3>
     </article>
   );
 }
-
-export default SmallFilmCard;
