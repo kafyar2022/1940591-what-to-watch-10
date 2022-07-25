@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-function MyListScreen(): JSX.Element {
+export default function MyListScreen(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -114,5 +114,3 @@ function MyListScreen(): JSX.Element {
     </div>
   );
 }
-
-export default MyListScreen;

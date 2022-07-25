@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-function AddReviewScreen(): JSX.Element {
+export default function AddReviewScreen(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -77,5 +77,3 @@ function AddReviewScreen(): JSX.Element {
     </section>
   );
 }
-
-export default AddReviewScreen;

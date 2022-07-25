@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
 import { useParams } from 'react-router-dom';
 
-function FilmScreen(): JSX.Element {
+export default function FilmScreen(): JSX.Element {
   const params = useParams();
 
   if (params.id) {
@@ -11,7 +10,7 @@ function FilmScreen(): JSX.Element {
   }
 
   return (
-    <React.Fragment>
+    <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -150,8 +149,6 @@ function FilmScreen(): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </>
   );
 }
-
-export default FilmScreen;

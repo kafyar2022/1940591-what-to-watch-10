@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-function PlayerScreen(): JSX.Element {
+export default function PlayerScreen(): JSX.Element {
   const params = useParams();
 
   if (params.id) {
@@ -39,5 +39,3 @@ function PlayerScreen(): JSX.Element {
     </div>
   );
 }
-
-export default PlayerScreen;

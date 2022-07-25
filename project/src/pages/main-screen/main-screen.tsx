@@ -1,5 +1,5 @@
-import React from 'react';
-import SmallFilmCard from '../../components/small-film-card/small-film-card';
+import dayjs from 'dayjs';
+import FilmList from '../../components/film-list/film-list';
 import { Films } from '../../types/film';
 
 type MainScrenProps = {
@@ -7,13 +7,11 @@ type MainScrenProps = {
 }
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
-function MainScreen({ films }: MainScrenProps): JSX.Element {
+export default function MainScreen({ films }: MainScrenProps): JSX.Element {
   const promoFilm = films[films.findIndex((film) => (film.promo === true))];
-  // eslint-disable-next-line no-console
-  console.log(promoFilm.releaseDate);
 
   return (
-    <React.Fragment>
+    <>
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
@@ -47,7 +45,7 @@ function MainScreen({ films }: MainScrenProps): JSX.Element {
               <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{[...promoFilm.genre]}</span>
-                {/* <span className="film-card__year">{promoFilm.releaseDate}</span> */}
+                <span className="film-card__year">{dayjs(promoFilm.releaseDate).format('YYYY')}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button">
@@ -103,9 +101,9 @@ function MainScreen({ films }: MainScrenProps): JSX.Element {
               <a href="#" className="catalog__genres-link">Thrillers</a>
             </li>
           </ul>
-          <div className="catalog__films-list">
-            {films.map((film) => <SmallFilmCard key={film.id} />).join(' ')}
-          </div>
+
+          <FilmList films={films}/>
+
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
           </div>
@@ -123,8 +121,6 @@ function MainScreen({ films }: MainScrenProps): JSX.Element {
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </>
   );
 }
-
-export default MainScreen;

@@ -14,7 +14,7 @@ type AppScreenProps = {
   films: Films;
 }
 
-function App({ films }: AppScreenProps): JSX.Element {
+export default function App({ films }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -60,5 +60,3 @@ function App({ films }: AppScreenProps): JSX.Element {
     </BrowserRouter>
   );
 }
-
-export default App;
