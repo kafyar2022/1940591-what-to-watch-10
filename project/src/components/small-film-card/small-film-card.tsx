@@ -1,25 +1,37 @@
-import { generatePath, Link, useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { generatePath, Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Film } from '../../types/film';
+import VideoPlayer from '../video-player/video-player';
 
 type SmallFilmCardProps = {
   film: Film;
-  onVideo: () => void;
 }
 
-function SmallFilmCard({ film, onVideo }: SmallFilmCardProps): JSX.Element {
-  const navigate = useNavigate();
+export default function SmallFilmCard({ film }: SmallFilmCardProps): JSX.Element {
+  const videoPlayerPlayTimeDelay = 1000;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const timerId = useRef<NodeJS.Timeout | null>(null);
+
+  const smallFilmCardMouseEnterHandler = () => (timerId.current = setTimeout(() => setIsPlaying(true), videoPlayerPlayTimeDelay));
+
+  const smallFilmCardMouseLeavehandler = () => {
+    timerId.current && clearTimeout(timerId.current);
+    setIsPlaying(false);
+  };
 
   return (
-    <article className="small-film-card catalog__films-card">
-      <div className="small-film-card__image" onMouseOver={onVideo} onClick={() => navigate(generatePath(AppRoute.Film, { id: String(film.id) }))}>
-        <img src={film.cover} alt={film.title} width={280} height={175} />
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseEnter={smallFilmCardMouseEnterHandler}
+      onMouseLeave={smallFilmCardMouseLeavehandler}
+    >
+      <div className="small-film-card__image">
+        <VideoPlayer film={film} isPlaying={isPlaying} />
       </div>
       <h3 className="small-film-card__title">
         <Link to={generatePath(AppRoute.Film, { id: String(film.id) })} className="small-film-card__link">{film.title}</Link>
       </h3>
-    </article>
+    </article >
   );
 }
-
-export default SmallFilmCard;

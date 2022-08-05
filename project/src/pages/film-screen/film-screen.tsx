@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import dayjs from 'dayjs';
+import { Fragment } from 'react';
 import { generatePath, Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Films } from '../../types/film';
@@ -20,7 +21,7 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
   const showFilm = films[films.findIndex((film) => (film.id === Number(params.id)))];
 
   return (
-    <>
+    <Fragment>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -159,7 +160,7 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
           </div>
         </footer>
       </div>
-    </>
+    </Fragment>
   );
 }
 
