@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import dayjs from 'dayjs';
+import { Fragment } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
 import { AppRoute } from '../../const';
@@ -9,12 +10,12 @@ type MainScreenProps = {
   films: Films;
 }
 
-export default function MainScreen({ films }: MainScreenProps): JSX.Element {
+function MainScreen({ films }: MainScreenProps): JSX.Element {
   const promoFilm = films[films.findIndex((film) => (film.promo === true))];
   const navigate = useNavigate();
 
   return (
-    <>
+    <Fragment>
       <section className="film-card">
         <div className="film-card__bg">
           <img src={promoFilm.poster} alt={promoFilm.title} />
@@ -124,6 +125,8 @@ export default function MainScreen({ films }: MainScreenProps): JSX.Element {
           </div>
         </footer>
       </div>
-    </>
+    </Fragment>
   );
 }
+
+export default MainScreen;

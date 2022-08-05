@@ -6,7 +6,7 @@ type PlayerScreenProps = {
   films: Films;
 }
 
-export default function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
+function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
   const params = useParams();
 
   if (!params.id) {
@@ -46,3 +46,5 @@ export default function PlayerScreen({ films }: PlayerScreenProps): JSX.Element 
     </div>
   );
 }
+
+export default PlayerScreen;

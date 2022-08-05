@@ -6,7 +6,7 @@ type FormReviewProps = {
   film: Film;
 }
 
-export default function FormReview({ film }: FormReviewProps): JSX.Element {
+function FormReview({ film }: FormReviewProps): JSX.Element {
   const [form, setForm] = useState({
     id: film.id,
     rating: film.rating,
@@ -47,3 +47,5 @@ export default function FormReview({ film }: FormReviewProps): JSX.Element {
     </form>
   );
 }
+
+export default FormReview;
