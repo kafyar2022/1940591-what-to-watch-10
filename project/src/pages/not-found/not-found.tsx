@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function NotFoundScreen(): JSX.Element {
+function NotFoundScreen(): JSX.Element {
   return (
     <>
       <h1>
@@ -12,3 +12,5 @@ export default function NotFoundScreen(): JSX.Element {
     </>
   );
 }
+
+export default NotFoundScreen;

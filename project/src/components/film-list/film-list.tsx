@@ -6,7 +6,7 @@ type FilmListProps = {
   films: Films;
 }
 
-export default function FilmList({ films }: FilmListProps): JSX.Element {
+function FilmList({ films }: FilmListProps): JSX.Element {
   const [id, setId] = useState<number>();
 
   return (
@@ -17,3 +17,5 @@ export default function FilmList({ films }: FilmListProps): JSX.Element {
     </div>
   );
 }
+
+export default FilmList;

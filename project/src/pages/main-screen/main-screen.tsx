@@ -9,7 +9,7 @@ type MainScreenProps = {
   films: Films;
 }
 
-export default function MainScreen({ films }: MainScreenProps): JSX.Element {
+function MainScreen({ films }: MainScreenProps): JSX.Element {
   const promoFilm = films[films.findIndex((film) => (film.promo === true))];
   const navigate = useNavigate();
 
@@ -127,3 +127,5 @@ export default function MainScreen({ films }: MainScreenProps): JSX.Element {
     </>
   );
 }
+
+export default MainScreen;

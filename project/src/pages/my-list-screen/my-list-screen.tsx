@@ -6,7 +6,7 @@ type MyListScreenProps = {
   films: Films;
 }
 
-export default function MyListScreen({ films }: MyListScreenProps): JSX.Element {
+function MyListScreen({ films }: MyListScreenProps): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -48,3 +48,5 @@ export default function MyListScreen({ films }: MyListScreenProps): JSX.Element 
     </div>
   );
 }
+
+export default MyListScreen;

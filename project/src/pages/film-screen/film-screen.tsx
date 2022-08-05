@@ -9,7 +9,7 @@ type FilmScreenProps = {
   films: Films;
 }
 
-export default function FilmScreen({ films }: FilmScreenProps): JSX.Element {
+function FilmScreen({ films }: FilmScreenProps): JSX.Element {
   const navigate = useNavigate();
   const params = useParams();
 
@@ -162,3 +162,5 @@ export default function FilmScreen({ films }: FilmScreenProps): JSX.Element {
     </>
   );
 }
+
+export default FilmScreen;

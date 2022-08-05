@@ -8,7 +8,7 @@ type AddReviewScreenProps = {
   films: Films;
 }
 
-export default function AddReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
+function AddReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
   const params = useParams();
 
   if (!params.id) {
@@ -63,3 +63,5 @@ export default function AddReviewScreen({ films }: AddReviewScreenProps): JSX.El
     </section>
   );
 }
+
+export default AddReviewScreen;

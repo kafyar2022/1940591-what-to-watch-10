@@ -7,7 +7,7 @@ type SmallFilmCardProps = {
   onVideo: () => void;
 }
 
-export default function SmallFilmCard({ film, onVideo }: SmallFilmCardProps): JSX.Element {
+function SmallFilmCard({ film, onVideo }: SmallFilmCardProps): JSX.Element {
   const navigate = useNavigate();
 
   return (
@@ -21,3 +21,5 @@ export default function SmallFilmCard({ film, onVideo }: SmallFilmCardProps): JS
     </article>
   );
 }
+
+export default SmallFilmCard;
