@@ -2,8 +2,10 @@
 import dayjs from 'dayjs';
 import { Fragment } from 'react';
 import { generatePath, Link, useNavigate, useParams } from 'react-router-dom';
+import FilmList from '../../components/film-list/film-list';
+import Tabs from '../../components/tabs/tabs';
 import { AppRoute } from '../../const';
-import { Films } from '../../types/film';
+import { Film, Films } from '../../types/film';
 import NotFoundScreen from '../not-found/not-found';
 
 type FilmScreenProps = {
@@ -19,6 +21,10 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
   }
 
   const showFilm = films[films.findIndex((film) => (film.id === Number(params.id)))];
+  const similarFilms = (): Films =>
+    films.filter((film: Film) =>
+      film.genre.some((gen: string) => showFilm.genre.indexOf(gen) >= 0) && film.id !== showFilm.id
+    );
 
   return (
     <Fragment>
@@ -30,11 +36,11 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link className="logo__link" to={AppRoute.Main}>
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
             <ul className="user-block">
               <li className="user-block__item">
@@ -68,7 +74,7 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={generatePath(AppRoute.AddReview, { id: String(showFilm.id) })} className="btn film-card__button">Add review</Link>
+                <Link className="btn film-card__button" to={generatePath(AppRoute.AddReview, { id: String(showFilm.id) })}>Add review</Link>
               </div>
             </div>
           </div>
@@ -78,74 +84,14 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
             <div className="film-card__poster film-card__poster--big">
               <img src={showFilm.cover} alt={showFilm.title} width={218} height={327} />
             </div>
-            <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-              <div className="film-rating">
-                <div className="film-rating__score">{showFilm.rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
-                </p>
-              </div>
-              <div className="film-card__text">
-                <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
-                <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
-                <p className="film-card__director"><strong>Director: {showFilm.director}</strong></p>
-                <p className="film-card__starring"><strong>Starring: {showFilm.starring}</strong></p>
-              </div>
-            </div>
+            <Tabs film={showFilm} />
           </div>
         </div>
       </section>
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <div className="catalog__films-list">
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/macbeth.jpg" alt="Macbeth" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-              </h3>
-            </article>
-            <article className="small-film-card catalog__films-card">
-              <div className="small-film-card__image">
-                <img src="img/aviator.jpg" alt="Aviator" width={280} height={175} />
-              </div>
-              <h3 className="small-film-card__title">
-                <a className="small-film-card__link" href="film-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <FilmList films={similarFilms()} />
         </section>
         <footer className="page-footer">
           <div className="logo">
