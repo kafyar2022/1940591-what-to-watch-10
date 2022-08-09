@@ -20,11 +20,7 @@ function App({ films }: AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={
-            <MainScreen
-              films={films}
-            />
-          }
+          element={<MainScreen />}
         />
         <Route
           path={AppRoute.SignIn}
