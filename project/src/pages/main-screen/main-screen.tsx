@@ -3,15 +3,14 @@ import dayjs from 'dayjs';
 import { Fragment } from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
+import GenreList from '../../components/genre-list/genre-list';
+import MainLogo from '../../components/main-logo/main-logo';
 import { AppRoute } from '../../const';
-import { Films } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 
-type MainScreenProps = {
-  films: Films;
-}
-
-function MainScreen({ films }: MainScreenProps): JSX.Element {
-  const promoFilm = films[films.findIndex((film) => (film.promo === true))];
+function MainScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.filteredFilms);
+  const promoFilm = films[0];
   const navigate = useNavigate();
 
   return (
@@ -22,13 +21,9 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+
+          <MainLogo />
+
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -73,38 +68,8 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids &amp; Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+
+          <GenreList />
 
           <FilmList films={films} />
 
@@ -113,13 +78,9 @@ function MainScreen({ films }: MainScreenProps): JSX.Element {
           </div>
         </section>
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+
+          <MainLogo footer />
+
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

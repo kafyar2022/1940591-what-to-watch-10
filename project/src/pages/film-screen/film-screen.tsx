@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { Fragment } from 'react';
 import { generatePath, Link, useNavigate, useParams } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
+import MainLogo from '../../components/main-logo/main-logo';
 import Tabs from '../../components/tabs/tabs';
 import { AppRoute } from '../../const';
 import { Film, Films } from '../../types/film';
@@ -35,13 +36,7 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
-            <div className="logo">
-              <Link className="logo__link" to={AppRoute.Main}>
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
+            <MainLogo />
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
@@ -94,13 +89,7 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
           <FilmList films={similarFilms()} />
         </section>
         <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <MainLogo footer />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

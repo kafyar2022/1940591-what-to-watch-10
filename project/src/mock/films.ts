@@ -37,7 +37,7 @@ export const films: Films = [
     cover: 'img/macbeth.jpg',
     poster: 'img/bg-the-grand-budapest-hotel.jpg',
     video: 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4',
-    genre: ['Sci-Fi'],
+    genre: ['Sci-Fi', 'Kids & Family'],
     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ad nemo provident? Repellat nemo dolorum doloremque sequi vel atque necessitatibus repudiandae adipisci, beatae odit ut rerum voluptates error autem laudantium',
     director: 'Joel and Ethan Coen',
     starring: ['Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan', 'Tony Revoloru', 'Tilda Swinton', 'Owen Wilkinson', 'Adrien Brody', 'Ralph Fiennes'],
