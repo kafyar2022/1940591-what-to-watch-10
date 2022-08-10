@@ -9,7 +9,7 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 function MainScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector((state) => state.filteredFilms);
   const promoFilm = films[0];
   const navigate = useNavigate();
 
@@ -21,7 +21,9 @@ function MainScreen(): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
+
           <MainLogo />
+
           <ul className="user-block">
             <li className="user-block__item">
               <div className="user-block__avatar">
@@ -76,7 +78,9 @@ function MainScreen(): JSX.Element {
           </div>
         </section>
         <footer className="page-footer">
+
           <MainLogo footer />
+
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

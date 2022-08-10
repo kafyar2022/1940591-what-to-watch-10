@@ -1,6 +1,6 @@
 import { GenreType } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenre, getFilmsByGenre } from '../../store/action';
+import { changeGenre, filterFilmsByGenre } from '../../store/action';
 
 function GenreList(): JSX.Element {
   const currentGenre = useAppSelector((state) => state.genre);
@@ -14,7 +14,7 @@ function GenreList(): JSX.Element {
             className="catalog__genres-link"
             onClick={() => {
               dispatch(changeGenre({ genre: genre[1] }));
-              dispatch(getFilmsByGenre());
+              dispatch(filterFilmsByGenre());
             }}
           >
             {genre[1]}
