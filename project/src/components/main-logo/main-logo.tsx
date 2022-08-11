@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, GenreType } from '../../const';
 import { useAppDispatch } from '../../hooks';
-import { changeGenre, filterFilmsByGenre } from '../../store/action';
+import { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount } from '../../store/action';
 
 type MainLogoProps = {
   footer?: boolean;
@@ -18,6 +18,7 @@ function MainLogo({ footer }: MainLogoProps): JSX.Element {
         onClick={() => {
           dispatch(changeGenre({ genre: GenreType.ALL }));
           dispatch(filterFilmsByGenre());
+          dispatch(resetRenderedFilmsCount());
         }}
       >
         <span className="logo__letter logo__letter--1">W</span>

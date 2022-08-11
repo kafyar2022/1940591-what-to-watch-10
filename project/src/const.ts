@@ -1,3 +1,7 @@
+export const FILM_COUNT_PER_STEP = 8;
+export const VIDEO_PLAY_TIME_DELAY = 1000;
+
+
 export enum AppRoute {
   Main = '/',
   SignIn = '/login',

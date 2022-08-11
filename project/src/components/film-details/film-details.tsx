@@ -7,7 +7,7 @@ type FilmDetailsProps = {
 }
 
 function FilmDetails({ film }: FilmDetailsProps): JSX.Element {
-  const renderStar = (star: string): JSX.Element => (<Fragment>{`${star}, `}<br /></Fragment>);
+  const renderStar = (star: string, i: number): JSX.Element => (<Fragment key={i}>{`${star}, `}<br /></Fragment>);
 
   return (
     <div className="film-card__text film-card__row">
@@ -23,7 +23,7 @@ function FilmDetails({ film }: FilmDetailsProps): JSX.Element {
               if (i === (film.starring.length - 1)) {
                 return star;
               }
-              return renderStar(star);
+              return renderStar(star, i);
             })
           }
           </span>

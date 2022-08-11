@@ -1,4 +1,7 @@
+import { Fragment } from 'react';
+import { useAppSelector } from '../../hooks';
 import { Films } from '../../types/film';
+import LoadMoreButton from '../load-more-button/load-more-button';
 import SmallFilmCard from '../small-film-card/small-film-card';
 
 type FilmListProps = {
@@ -6,12 +9,16 @@ type FilmListProps = {
 }
 
 function FilmList({ films }: FilmListProps): JSX.Element {
+  const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
+
   return (
-    <div className="catalog__films-list">
-      {films.map((film) =>
-        <SmallFilmCard key={film.id} film={film} />
-      )}
-    </div>
+    <Fragment>
+      <div className="catalog__films-list">
+        {Array.from({ length: renderedFilmsCount }, (_, i) => <SmallFilmCard key={i} film={films[i]} />)}
+      </div>
+
+      {films.length > renderedFilmsCount && <LoadMoreButton />}
+    </Fragment>
   );
 }
 

@@ -6,14 +6,11 @@ import FilmList from '../../components/film-list/film-list';
 import MainLogo from '../../components/main-logo/main-logo';
 import Tabs from '../../components/tabs/tabs';
 import { AppRoute } from '../../const';
-import { Film, Films } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 import NotFoundScreen from '../not-found/not-found';
 
-type FilmScreenProps = {
-  films: Films;
-}
-
-function FilmScreen({ films }: FilmScreenProps): JSX.Element {
+function FilmScreen(): JSX.Element {
+  const films = useAppSelector((state) => state.filteredFilms);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -22,10 +19,6 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
   }
 
   const showFilm = films[films.findIndex((film) => (film.id === Number(params.id)))];
-  const similarFilms = (): Films =>
-    films.filter((film: Film) =>
-      film.genre.some((gen: string) => showFilm.genre.indexOf(gen) >= 0) && film.id !== showFilm.id
-    );
 
   return (
     <Fragment>
@@ -36,7 +29,9 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <header className="page-header film-card__head">
+
             <MainLogo />
+
             <ul className="user-block">
               <li className="user-block__item">
                 <div className="user-block__avatar">
@@ -86,10 +81,12 @@ function FilmScreen({ films }: FilmScreenProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={similarFilms()} />
+          <FilmList films={films} />
         </section>
         <footer className="page-footer">
+
           <MainLogo footer />
+
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>
