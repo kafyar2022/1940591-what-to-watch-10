@@ -13,8 +13,8 @@ function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
   const firstHalf = comments.splice(0, middleIndex);
   const secondHalf = comments.splice(-middleIndex);
 
-  const renderComment = (comment: Review): JSX.Element => (
-    <div className="review">
+  const renderComment = (comment: Review, i: number): JSX.Element => (
+    <div key={i} className="review">
       <blockquote className="review__quote">
         <p className="review__text">{comment.review}</p>
         <footer className="review__details">
@@ -29,10 +29,10 @@ function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {firstHalf.map((comment) => renderComment(comment))}
+        {firstHalf.map((comment, i) => renderComment(comment, i))}
       </div>
       <div className="film-card__reviews-col">
-        {secondHalf.map((comment) => renderComment(comment))}
+        {secondHalf.map((comment, i) => renderComment(comment, i))}
       </div>
     </div>
   );
