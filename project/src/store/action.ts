@@ -1,11 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
+import { Films } from '../types/film';
 
-const changeGenre = createAction<{ genre: string }>('films/changeGenre');
+export const changeGenre = createAction<{ genre: string }>('films/changeGenre');
 
-const filterFilmsByGenre = createAction('films/filter');
+export const filterFilmsByGenre = createAction('films/filter');
 
-const resetRenderedFilmsCount = createAction('films/resetCount');
+export const resetRenderedFilmsCount = createAction('films/resetCount');
 
-const loadMoreFilms = createAction('films/loadMore');
+export const loadMoreFilms = createAction('films/loadMore');
 
-export { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount, loadMoreFilms };
+export const loadFilms = createAction<Films>('films/loadAll');
