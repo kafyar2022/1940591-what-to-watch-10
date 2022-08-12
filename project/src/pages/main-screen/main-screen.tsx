@@ -17,7 +17,7 @@ function MainScreen(): JSX.Element {
     <Fragment>
       <section className="film-card">
         <div className="film-card__bg">
-          <img src={promoFilm.poster} alt={promoFilm.title} />
+          <img src={promoFilm.previewImage} alt={promoFilm.name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header film-card__head">
@@ -38,13 +38,13 @@ function MainScreen(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.cover} alt={promoFilm.title} width={218} height={327} />
+              <img src={promoFilm.previewImage} alt={promoFilm.name} width={218} height={327} />
             </div>
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{[...promoFilm.genre]}</span>
-                <span className="film-card__year">{dayjs(promoFilm.releaseDate).format('YYYY')}</span>
+                <span className="film-card__year">{dayjs(promoFilm.released).format('YYYY')}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(generatePath(AppRoute.Player, { id: String(promoFilm.id) }))}>

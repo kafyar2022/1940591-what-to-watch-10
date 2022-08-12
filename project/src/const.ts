@@ -35,3 +35,7 @@ export enum GenreType {
   SCI_FI = 'Sci-Fi',
   THRILLERS = 'Thrillers',
 }
+
+export enum APIRoute {
+  Films = '/films',
+}

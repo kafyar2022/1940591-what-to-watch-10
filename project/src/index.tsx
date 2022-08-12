@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { films } from './mock/films';
 import { store } from './store';
+import { fetchFilmsAction } from './store/api-action';
 
-const Setting = {
-  FILMS: films,
-};
+store.dispatch(fetchFilmsAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,9 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        films={Setting.FILMS}
-      />
+      <App />
     </Provider>
   </React.StrictMode>,
 );

@@ -9,4 +9,6 @@ export const resetRenderedFilmsCount = createAction('films/resetCount');
 
 export const loadMoreFilms = createAction('films/loadMore');
 
-export const loadFilms = createAction<Films>('films/loadAll');
+export const loadFilms = createAction<Films>('data/loadFilms');
+
+export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');

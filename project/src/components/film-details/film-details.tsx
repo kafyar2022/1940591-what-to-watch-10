@@ -36,11 +36,11 @@ function FilmDetails({ film }: FilmDetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{film.genre.map((item) => item).join(', ')}</span>
+          <span className="film-card__details-value">{film.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{dayjs(film.releaseDate).format('YYYY')}</span>
+          <span className="film-card__details-value">{dayjs(film.released).format('YYYY')}</span>
         </p>
       </div>
     </div>
