@@ -9,9 +9,13 @@ import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
 
 function MainScreen(): JSX.Element {
-  const films = useAppSelector((state) => state.filteredFilms);
-  const promoFilm = films[0];
   const navigate = useNavigate();
+
+  const films = useAppSelector((state) => state.filteredFilms);
+  const allFilms = useAppSelector((state) => state.films);
+  const promoFilm = allFilms[0];
+  const genres = new Set<string>();
+  allFilms.forEach((film) => genres.add(film.genre));
 
   return (
     <Fragment>
@@ -69,7 +73,7 @@ function MainScreen(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList />
+          <GenreList genres={[...genres]} />
 
           <FilmList films={films} />
 

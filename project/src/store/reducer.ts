@@ -1,4 +1,4 @@
-import { GenreType, FILM_COUNT_PER_STEP } from './../const';
+import { FILM_COUNT_PER_STEP, DEFAULT_GENRE } from './../const';
 import { createReducer } from '@reduxjs/toolkit';
 import { changeGenre, filterFilmsByGenre, loadMoreFilms, resetRenderedFilmsCount, loadFilms, setDataLoadedStatus } from './action';
 import { Films } from '../types/film';
@@ -12,7 +12,7 @@ type InitialState = {
 }
 
 const initialState: InitialState = {
-  genre: GenreType.ALL.toString(),
+  genre: DEFAULT_GENRE,
   filteredFilms: [],
   films: [],
   renderedFilmsCount: 0,
@@ -27,11 +27,11 @@ const reducer = createReducer(initialState, (builder) => {
       state.genre = genre;
     })
     .addCase(filterFilmsByGenre, (state) => {
-      if (state.genre === GenreType.ALL) {
+      if (state.genre === DEFAULT_GENRE) {
         state.filteredFilms = state.films;
         return;
       }
-      state.filteredFilms = state.films.filter((film) => film.genre.includes(state.genre));
+      state.filteredFilms = state.films.filter((film) => film.genre === state.genre);
     })
     .addCase(resetRenderedFilmsCount, (state) => {
       state.renderedFilmsCount = Math.min(state.filteredFilms.length, FILM_COUNT_PER_STEP);
