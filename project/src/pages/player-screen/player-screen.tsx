@@ -1,12 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { Films } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 import NotFoundScreen from '../not-found/not-found';
 
-type PlayerScreenProps = {
-  films: Films;
-}
-
-function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
+function PlayerScreen(): JSX.Element {
+  const { films } = useAppSelector((state) => state);
   const params = useParams();
 
   if (!params.id) {
@@ -17,7 +14,7 @@ function PlayerScreen({ films }: PlayerScreenProps): JSX.Element {
 
   return (
     <div className="player">
-      <video src={playFilm.video} className="player__video" poster={playFilm.poster} />
+      <video src={playFilm.videoLink} className="player__video" poster={playFilm.posterImage} />
       <button type="button" className="player__exit">Exit</button>
       <div className="player__controls">
         <div className="player__controls-row">

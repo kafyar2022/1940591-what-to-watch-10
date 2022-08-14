@@ -38,7 +38,7 @@ export default function SmallFilmCard({ film }: SmallFilmCardProps): JSX.Element
           to={generatePath(AppRoute.Film, { id: String(film.id) })}
           onClick={() => dispatch(resetRenderedFilmsCount())}
         >
-          {film.title}
+          {film.name}
         </Link>
       </h3>
     </article >

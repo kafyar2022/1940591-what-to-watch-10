@@ -1,5 +1,6 @@
 export const FILM_COUNT_PER_STEP = 8;
 export const VIDEO_PLAY_TIME_DELAY = 1000;
+export const DEFAULT_GENRE = 'All genres';
 
 
 export enum AppRoute {
@@ -23,15 +24,6 @@ export enum Tab {
   Reviews = 'REVIEWS',
 }
 
-export enum GenreType {
-  ALL = 'All genres',
-  COMEDIES = 'Comedies',
-  CRIME = 'Crime',
-  DOCUMENTARY = 'Documentary',
-  DRAMAS = 'Dramas',
-  HORROR = 'Horror',
-  KIDS_FAMILY = 'Kids & Family',
-  ROMANCE = 'Romance',
-  SCI_FI = 'Sci-Fi',
-  THRILLERS = 'Thrillers',
+export enum APIRoute {
+  Films = '/films',
 }

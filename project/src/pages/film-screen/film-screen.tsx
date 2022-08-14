@@ -45,10 +45,10 @@ function FilmScreen(): JSX.Element {
           </header>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{showFilm.title}</h2>
+              <h2 className="film-card__title">{showFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{showFilm.genre}</span>
-                <span className="film-card__year">{dayjs(showFilm.releaseDate).format('YYYY')}</span>
+                <span className="film-card__year">{dayjs(showFilm.released).format('YYYY')}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(generatePath(AppRoute.Player, { id: String(showFilm.id) }))}>
@@ -72,7 +72,7 @@ function FilmScreen(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={showFilm.cover} alt={showFilm.title} width={218} height={327} />
+              <img src={showFilm.previewImage} alt={showFilm.name} width={218} height={327} />
             </div>
             <Tabs film={showFilm} />
           </div>

@@ -1,14 +1,13 @@
 import { Link } from 'react-router-dom';
 import FilmList from '../../components/film-list/film-list';
 import { AppRoute } from '../../const';
-import { Films } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
-type MyListScreenProps = {
-  films: Films;
-}
 
-function MyListScreen({ films }: MyListScreenProps): JSX.Element {
+function MyListScreen(): JSX.Element {
+  const { films } = useAppSelector((state) => state);
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

@@ -20,8 +20,8 @@ function VideoPlayer({ film, isPlaying }: VideoPlayerProps): JSX.Element {
   return (
     <video
       ref={videoRef}
-      src={film.video}
-      poster={film.cover}
+      src={film.videoLink}
+      poster={film.previewImage}
       width={280}
       height={175}
       muted

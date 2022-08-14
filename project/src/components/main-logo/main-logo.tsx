@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, GenreType } from '../../const';
+import { AppRoute, DEFAULT_GENRE } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount } from '../../store/action';
 
@@ -16,7 +16,7 @@ function MainLogo({ footer }: MainLogoProps): JSX.Element {
         className={`logo__link ${footer && 'logo__link--light'}`}
         to={AppRoute.Main}
         onClick={() => {
-          dispatch(changeGenre({ genre: GenreType.ALL }));
+          dispatch(changeGenre({ genre: DEFAULT_GENRE }));
           dispatch(filterFilmsByGenre());
           dispatch(resetRenderedFilmsCount());
         }}

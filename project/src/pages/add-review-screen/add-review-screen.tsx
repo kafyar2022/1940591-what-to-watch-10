@@ -1,14 +1,11 @@
 import { useParams } from 'react-router-dom';
 import FormReview from '../../components/form-review/form-review';
-import { Films } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 import NotFoundScreen from '../not-found/not-found';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
-type AddReviewScreenProps = {
-  films: Films;
-}
-
-function AddReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
+function AddReviewScreen(): JSX.Element {
+  const { films } = useAppSelector((state) => state);
   const params = useParams();
 
   if (!params.id) {
@@ -35,7 +32,7 @@ function AddReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{reviewFilm.title}</a>
+                <a href="film-page.html" className="breadcrumbs__link">{reviewFilm.name}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -54,7 +51,7 @@ function AddReviewScreen({ films }: AddReviewScreenProps): JSX.Element {
           </ul>
         </header>
         <div className="film-card__poster film-card__poster--small">
-          <img src={reviewFilm.cover} alt={reviewFilm.title} width={218} height={327} />
+          <img src={reviewFilm.previewImage} alt={reviewFilm.name} width={218} height={327} />
         </div>
       </div>
       <div className="add-review">
