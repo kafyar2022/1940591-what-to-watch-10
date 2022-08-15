@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { Fragment } from 'react';
 import { Film } from '../../types/film';
 
@@ -40,7 +39,7 @@ function FilmDetails({ film }: FilmDetailsProps): JSX.Element {
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{dayjs(film.released).format('YYYY')}</span>
+          <span className="film-card__details-value">{film.released}</span>
         </p>
       </div>
     </div>
