@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { Film } from '../../types/film';
 import { Review, Reviews } from '../../types/reviews';
 
@@ -18,7 +17,7 @@ function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
         <p className="review__text">{comment.comment}</p>
         <footer className="review__details">
           <cite className="review__author">{comment.user.name}</cite>
-          <time className="review__date" dateTime={dayjs(comment.date).format('YYYY-MM-DD')}>{dayjs(comment.date).format('MMMM DD YYYY')}</time>
+          <time className="review__date" dateTime={comment.date}>{comment.date}</time>
         </footer>
       </blockquote>
       <div className="review__rating">{comment.rating}</div>
