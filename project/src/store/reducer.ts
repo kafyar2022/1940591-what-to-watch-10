@@ -1,6 +1,6 @@
 import { FILM_COUNT_PER_STEP, DEFAULT_GENRE, AuthorizationStatus } from './../const';
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenre, filterFilmsByGenre, loadMoreFilms, resetRenderedFilmsCount, loadFilms, setDataLoadedStatus, requireAuthorization } from './action';
+import { changeGenre, filterFilmsByGenre, loadMoreFilms, resetRenderedFilmsCount, loadFilms, setDataLoadedStatus, setAuthorizationStatus } from './action';
 import { Films } from '../types/film';
 
 type InitialState = {
@@ -48,7 +48,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
     })
-    .addCase(requireAuthorization, (state, action) => {
+    .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
     });
 });

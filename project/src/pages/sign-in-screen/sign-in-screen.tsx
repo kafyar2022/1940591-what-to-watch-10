@@ -1,7 +1,16 @@
+import { Navigate } from 'react-router-dom';
 import LoginForm from '../../components/login-form/login-form';
 import MainLogo from '../../components/main-logo/main-logo';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 function SignInScreen(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main} />;
+  }
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

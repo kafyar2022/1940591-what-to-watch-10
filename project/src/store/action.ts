@@ -14,6 +14,6 @@ export const loadFilms = createAction<Films>('data/loadFilms');
 
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const setAuthorizationStatus = createAction<AuthorizationStatus>('user/setAuthorizationStatus');
 
 export const redirectToRoute = createAction<AppRoute>('app/redirectToRoute');
