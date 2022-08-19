@@ -1,15 +1,21 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchFilmReviews } from '../../store/api-action';
 import { Film } from '../../types/film';
-import { Review, Reviews } from '../../types/reviews';
+import { Review } from '../../types/reviews';
 
 type FilmReviewsProps = {
   film: Film;
 }
 
 function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
-  const comments: Reviews = [];
-  const middleIndex = Math.ceil(comments.length / 2);
-  const firstHalf = comments.splice(0, middleIndex);
-  const secondHalf = comments.splice(-middleIndex);
+  const { filmReviews } = useAppSelector((state) => state);
+  const middleIndex = Math.ceil(filmReviews.length / 2);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFilmReviews(String(film.id)));
+  }, [dispatch, film.id]);
 
   const renderComment = (comment: Review, i: number): JSX.Element => (
     <div key={i} className="review">
@@ -27,10 +33,20 @@ function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {firstHalf.map((comment, i) => renderComment(comment, i))}
+        {
+          middleIndex > 1
+            ?
+            filmReviews.splice(0, middleIndex).map((comment, i) => renderComment(comment, i))
+            :
+            filmReviews.map((comment, i) => renderComment(comment, i))
+        }
       </div>
       <div className="film-card__reviews-col">
-        {secondHalf.map((comment, i) => renderComment(comment, i))}
+        {
+          middleIndex > 1
+          &&
+          filmReviews.splice(-middleIndex).map((comment, i) => renderComment(comment, i))
+        }
       </div>
     </div>
   );

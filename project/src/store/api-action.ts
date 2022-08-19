@@ -1,6 +1,16 @@
+import { generatePath } from 'react-router-dom';
 import { AppRoute } from './../const';
 import { Films } from './../types/film';
-import { filterFilmsByGenre, loadFilms, setDataLoadedStatus, redirectToRoute, setAuthorizationStatus } from './action';
+import {
+  filterFilmsByGenre,
+  loadFilms,
+  setDataLoadedStatus,
+  redirectToRoute,
+  setAuthorizationStatus,
+  setCurrentFilm,
+  setSimilarFilms,
+  setFilmReviews
+} from './action';
 import { AppDispatch, State } from './../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
@@ -64,5 +74,41 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+  },
+);
+
+export const fetchFilm = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'films/fetchFilm',
+  async (filmId, { dispatch, extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.Film, { filmId }));
+    dispatch(setCurrentFilm(data));
+  },
+);
+
+export const fetchSimilarFilms = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'films/fetchSimilarFilms',
+  async (filmId, { dispatch, extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.SimilarFilms, { filmId }));
+    dispatch(setSimilarFilms(data));
+  },
+);
+
+export const fetchFilmReviews = createAsyncThunk<void, string | undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'films/fetchSimilarFilms',
+  async (filmId, { dispatch, extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.Reviews, { filmId }));
+    dispatch(setFilmReviews(data));
   },
 );

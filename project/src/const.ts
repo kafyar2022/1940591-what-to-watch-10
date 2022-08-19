@@ -28,4 +28,27 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Film = '/films/:filmId',
+  SimilarFilms = '/films/:filmId/similar',
+  Reviews = '/comments/:filmId',
 }
+
+export const EmptyFilm = {
+  id: 0,
+  name: '',
+  posterImage: '',
+  previewImage: '',
+  backgroundImage: '',
+  backgroundColor: '',
+  videoLink: '',
+  previewVideoLink: '',
+  description: '',
+  rating: 0,
+  scoresCount: 0,
+  director: '',
+  starring: [],
+  runTime: 0,
+  genre: '',
+  released: 0,
+  isFavorite: false,
+};

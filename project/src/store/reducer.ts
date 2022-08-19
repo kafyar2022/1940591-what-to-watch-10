@@ -1,7 +1,19 @@
-import { FILM_COUNT_PER_STEP, DEFAULT_GENRE, AuthorizationStatus } from './../const';
+import { FILM_COUNT_PER_STEP, DEFAULT_GENRE, AuthorizationStatus, EmptyFilm } from './../const';
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenre, filterFilmsByGenre, loadMoreFilms, resetRenderedFilmsCount, loadFilms, setDataLoadedStatus, setAuthorizationStatus } from './action';
-import { Films } from '../types/film';
+import {
+  changeGenre,
+  filterFilmsByGenre,
+  loadMoreFilms,
+  resetRenderedFilmsCount,
+  loadFilms,
+  setDataLoadedStatus,
+  setAuthorizationStatus,
+  setCurrentFilm,
+  setSimilarFilms,
+  setFilmReviews
+} from './action';
+import { Film, Films } from '../types/film';
+import { Reviews } from '../types/reviews';
 
 type InitialState = {
   genre: string;
@@ -10,6 +22,9 @@ type InitialState = {
   renderedFilmsCount: number;
   isDataLoaded: boolean;
   authorizationStatus: AuthorizationStatus;
+  currentFilm: Film;
+  similarFilms: Films;
+  filmReviews: Reviews;
 }
 
 const initialState: InitialState = {
@@ -19,6 +34,9 @@ const initialState: InitialState = {
   renderedFilmsCount: 0,
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  currentFilm: EmptyFilm,
+  similarFilms: [],
+  filmReviews: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -36,7 +54,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.filteredFilms = state.films.filter((film) => film.genre === state.genre);
     })
     .addCase(resetRenderedFilmsCount, (state) => {
-      state.renderedFilmsCount = Math.min(state.filteredFilms.length, FILM_COUNT_PER_STEP);
+      state.renderedFilmsCount = FILM_COUNT_PER_STEP;
     })
     .addCase(loadMoreFilms, (state) => {
       state.renderedFilmsCount = Math.min(state.filteredFilms.length, state.renderedFilmsCount + FILM_COUNT_PER_STEP);
@@ -50,6 +68,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setCurrentFilm, (state, action) => {
+      state.currentFilm = action.payload;
+    })
+    .addCase(setSimilarFilms, (state, action) => {
+      state.similarFilms = action.payload;
+    })
+    .addCase(setFilmReviews, (state, action) => {
+      state.filmReviews = action.payload;
     });
 });
 

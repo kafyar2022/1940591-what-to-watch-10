@@ -9,12 +9,12 @@ type FilmListProps = {
 }
 
 function FilmList({ films }: FilmListProps): JSX.Element {
-  const renderedFilmsCount = useAppSelector((state) => state.renderedFilmsCount);
+  const { renderedFilmsCount } = useAppSelector((state) => state);
 
   return (
     <Fragment>
       <div className="catalog__films-list">
-        {Array.from({ length: renderedFilmsCount }, (_, i) => <SmallFilmCard key={i} film={films[i]} />)}
+        {Array.from({ length: Math.min(renderedFilmsCount, films.length) }, (_, i) => <SmallFilmCard key={i} film={films[i]} />)}
       </div>
 
       {films.length > renderedFilmsCount && <LoadMoreButton />}
