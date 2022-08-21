@@ -165,6 +165,6 @@ export const postNewReview = createAsyncThunk<void, NewReviewData, {
   'reviews/post',
   async ({ filmId, comment, rating }, { dispatch, extra: api }) => {
     await api.post(generatePath(APIRoute.PostReview, { filmId: String(filmId) }), { comment, rating });
-    // dispatch(redirectToRoute(generatePath(AppRoute.Film, { id: String(filmId) })));
+    dispatch(redirectToRoute(generatePath(AppRoute.Film, { id: String(filmId) })));
   },
 );
