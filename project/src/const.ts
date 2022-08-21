@@ -1,15 +1,18 @@
 export const FILM_COUNT_PER_STEP = 8;
 export const VIDEO_PLAY_TIME_DELAY = 1000;
 export const DEFAULT_GENRE = 'All genres';
+export const MAX_COMMENT_LENGTH = 400;
+export const MIM_COMMENT_LENGTH = 50;
 
 
 export enum AppRoute {
   Main = '/',
-  SignIn = '/login',
+  Login = '/login',
   MyList = '/mylist',
   Film = '/films/:id',
   AddReview = '/films/:id/review',
-  Player = '/player/:id'
+  Player = '/player/:id',
+  NotFound = '*',
 }
 
 export enum AuthorizationStatus {
@@ -31,6 +34,10 @@ export enum APIRoute {
   Film = '/films/:filmId',
   SimilarFilms = '/films/:filmId/similar',
   Reviews = '/comments/:filmId',
+  Promo = '/promo',
+  FavoriteFilms = '/favorite',
+  ToggleFavorite = '/favorite/:filmId/:status',
+  PostReview = '/comments/:filmId',
 }
 
 export const EmptyFilm = {

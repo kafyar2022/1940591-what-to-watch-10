@@ -11,7 +11,7 @@ export const resetRenderedFilmsCount = createAction('films/resetCount');
 
 export const loadMoreFilms = createAction('films/loadMore');
 
-export const loadFilms = createAction<Films>('data/loadFilms');
+export const setFilms = createAction<Films>('data/setFilms');
 
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
 
@@ -24,3 +24,9 @@ export const setCurrentFilm = createAction<Film>('films/setCurrentFilm');
 export const setSimilarFilms = createAction<Films>('films/setSimilarFilms');
 
 export const setFilmReviews = createAction<Reviews>('films/setReviews');
+
+export const setPromoFilm = createAction<Film>('films/setPromo');
+
+export const setFavoriteFilms = createAction<Films>('films/setFavoriteFilms');
+
+export const updateFilm = createAction<Film>('films/update');

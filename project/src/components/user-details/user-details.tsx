@@ -1,41 +1,41 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { AppRoute } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { getUser } from '../../services/user';
 import { logoutAction } from '../../store/api-action';
+import { IsAuthorized } from '../../util';
 
 function UserDetails(): JSX.Element {
-  const { authorizationStatus } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-
-  if (authorizationStatus === AuthorizationStatus.NoAuth) {
-    return (
-      <div className="user-block">
-        <Link className="user-block__link" to={AppRoute.SignIn}>Sign in</Link>
-      </div>
-    );
-  }
+  const user = getUser();
 
   return (
-    <ul className="user-block">
-      <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-        </div>
-      </li>
-      <li className="user-block__item">
-        <Link
-          className="user-block__link"
-          to="/"
-          onClick={(evt) => {
-            evt.preventDefault();
-            dispatch(logoutAction());
-          }}
-        >
-          Sign out
-        </Link>
-      </li>
-    </ul>
+    !IsAuthorized()
+      ?
+      <div className="user-block">
+        <Link className="user-block__link" to={AppRoute.Login}>Sign in</Link>
+      </div>
+      :
+      <ul className="user-block">
+        <li className="user-block__item">
+          <div className="user-block__avatar">
+            <img src={user.avatarUrl} alt={user.name} width={63} height={63} />
+          </div>
+        </li>
+
+        <li className="user-block__item">
+          <Link
+            className="user-block__link"
+            to="/"
+            onClick={(evt) => {
+              evt.preventDefault();
+              dispatch(logoutAction());
+            }}
+          >
+            Sign out
+          </Link>
+        </li>
+      </ul>
   );
 }
 
