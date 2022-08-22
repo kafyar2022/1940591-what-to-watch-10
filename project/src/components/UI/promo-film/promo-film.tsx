@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { generatePath, Link, useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { fetchPromoFilm } from '../../../store/api-action';
+import { IsAuthorized } from '../../../util';
 import MainLogo from '../../main-logo/main-logo';
 import ToggleFavoriteButton from '../../toggle-favorite-button/toggle-favorite-button';
 import UserDetails from '../../user-details/user-details';
@@ -12,6 +13,7 @@ function PromoFilm(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { promoFilm } = useAppSelector((state) => state);
+  const isAuthorized = IsAuthorized();
 
   useEffect(() => {
     dispatch(fetchPromoFilm());
@@ -60,8 +62,18 @@ function PromoFilm(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-
-                <ToggleFavoriteButton film={promoFilm} />
+                {
+                  isAuthorized
+                    ?
+                    <ToggleFavoriteButton film={promoFilm} />
+                    :
+                    <Link className="btn btn--list film-card__button" to={AppRoute.Login}>
+                      <svg viewBox="0 0 19 20" width={19} height={20}>
+                        <use xlinkHref="#add" />
+                      </svg>
+                      <span>My list</span>
+                    </Link>
+                }
               </div>
             </div>
           </div>
