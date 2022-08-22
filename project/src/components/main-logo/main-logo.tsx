@@ -13,7 +13,7 @@ function MainLogo({ footer }: MainLogoProps): JSX.Element {
   return (
     <div className="logo">
       <Link
-        className={`logo__link ${footer && 'logo__link--light'}`}
+        className={`logo__link ${footer ? 'logo__link--light' : ''}`}
         to={AppRoute.Main}
         onClick={() => {
           dispatch(changeGenre({ genre: DEFAULT_GENRE }));

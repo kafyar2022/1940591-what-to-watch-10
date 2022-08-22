@@ -1,14 +1,13 @@
-import { DEFAULT_GENRE } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount } from '../../store/action';
+import { DEFAULT_GENRE } from '../../../const';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount } from '../../../store/action';
 
-type GenreListProps = {
-  genres: string[];
-}
-
-function GenreList({ genres }: GenreListProps): JSX.Element {
-  const currentGenre = useAppSelector((state) => state.genre);
+function GenreList(): JSX.Element {
   const dispatch = useAppDispatch();
+  const { currentGenre, films } = useAppSelector((state) => state);
+  const genres = new Set<string>();
+
+  films.forEach((film) => genres.add(film.genre));
 
   return (
     <ul className="catalog__genres-list">
@@ -24,7 +23,7 @@ function GenreList({ genres }: GenreListProps): JSX.Element {
           {DEFAULT_GENRE}
         </button>
       </li>
-      {genres.map((genre) => (
+      {[...genres].map((genre) => (
         <li key={genre} className={`catalog__genres-item ${genre === currentGenre ? 'catalog__genres-item--active' : ''}`}>
           <button
             className="catalog__genres-link"

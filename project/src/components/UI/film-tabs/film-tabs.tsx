@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { Tab } from '../../const';
-import { Film } from '../../types/film';
-import FilmDetails from '../film-details/film-details';
-import FilmOverview from '../film-overview/film-overview';
-import FilmReviews from '../film-reviews/film-reviews';
+import { Tab } from '../../../const';
+import { Film } from '../../../types/film';
+import FilmDetails from './film-details/film-details';
+import FilmOverview from './film-overview/film-overview';
+import FilmReviews from './film-reviews/film-reviews';
 
-type TabsProps = {
+type FilmTabsProps = {
   film: Film;
 }
 
-function Tabs({ film }: TabsProps): JSX.Element {
+function FilmTabs({ film }: FilmTabsProps): JSX.Element {
   const [currentTab, setCurrentTab] = useState(Tab.Overview);
+
   const renderCurrentTab = () => {
     switch (currentTab) {
       case Tab.Overview:
@@ -34,6 +35,7 @@ function Tabs({ film }: TabsProps): JSX.Element {
               Overview
             </button>
           </li>
+
           <li className={`film-nav__item ${currentTab === Tab.Details && 'film-nav__item--active'}`}>
             <button
               className="film-nav__link"
@@ -42,6 +44,7 @@ function Tabs({ film }: TabsProps): JSX.Element {
               Details
             </button>
           </li>
+
           <li className={`film-nav__item ${currentTab === Tab.Reviews && 'film-nav__item--active'}`}>
             <button
               className="film-nav__link"
@@ -52,9 +55,10 @@ function Tabs({ film }: TabsProps): JSX.Element {
           </li>
         </ul>
       </nav>
+
       {renderCurrentTab()}
     </div>
   );
 }
 
-export default Tabs;
+export default FilmTabs;
