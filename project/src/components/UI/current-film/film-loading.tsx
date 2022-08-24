@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
-import MainLogo from '../../components/main-logo/main-logo';
-import UserDetails from '../../components/user-details/user-details';
+import MainLogo from '../../main-logo/main-logo';
+import UserDetails from '../../user-details/user-details';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function FilmLoading(): JSX.Element {

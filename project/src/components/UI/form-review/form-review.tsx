@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
-import { MAX_COMMENT_LENGTH, MIM_COMMENT_LENGTH } from '../../const';
-import { useAppDispatch } from '../../hooks';
-import { postNewReview } from '../../store/api-action';
-import { Film } from '../../types/film';
+import { MAX_COMMENT_LENGTH, MIM_COMMENT_LENGTH } from '../../../const';
+import { useAppDispatch } from '../../../hooks';
+import { postNewReview } from '../../../store/api-action';
+import { Film } from '../../../types/film';
 const maxRating = 10;
 
 type FormReviewProps = {

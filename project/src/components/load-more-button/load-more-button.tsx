@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { loadMoreFilms } from '../../store/action';
+import { incrementRenderedFilmsCount } from '../../store/films-slice/films-slice';
 
 function LoadMoreButton(): JSX.Element {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ function LoadMoreButton(): JSX.Element {
       <button
         className="catalog__button"
         type="button"
-        onClick={() => dispatch(loadMoreFilms())}
+        onClick={() => dispatch(incrementRenderedFilmsCount())}
       >
         Show more
       </button>

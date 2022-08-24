@@ -1,10 +1,12 @@
-import { DEFAULT_GENRE } from '../../../const';
+import { DEFAULT_GENRE, FILM_COUNT_PER_STEP } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { changeGenre, filterFilmsByGenre, resetRenderedFilmsCount } from '../../../store/action';
+import { setCurrentGenre, setRenderedFilmsCount } from '../../../store/films-slice/films-slice';
+import { getCurrentGenre, getFilms } from '../../../store/films-slice/selector';
 
 function GenreList(): JSX.Element {
   const dispatch = useAppDispatch();
-  const { currentGenre, films } = useAppSelector((state) => state);
+  const currentGenre = useAppSelector(getCurrentGenre);
+  const films = useAppSelector(getFilms);
   const genres = new Set<string>();
 
   films.forEach((film) => genres.add(film.genre));
@@ -15,9 +17,8 @@ function GenreList(): JSX.Element {
         <button
           className="catalog__genres-link"
           onClick={() => {
-            dispatch(changeGenre({ genre: DEFAULT_GENRE }));
-            dispatch(filterFilmsByGenre());
-            dispatch(resetRenderedFilmsCount());
+            dispatch(setCurrentGenre(DEFAULT_GENRE));
+            dispatch(setRenderedFilmsCount(FILM_COUNT_PER_STEP));
           }}
         >
           {DEFAULT_GENRE}
@@ -28,9 +29,8 @@ function GenreList(): JSX.Element {
           <button
             className="catalog__genres-link"
             onClick={() => {
-              dispatch(changeGenre({ genre }));
-              dispatch(filterFilmsByGenre());
-              dispatch(resetRenderedFilmsCount());
+              dispatch(setCurrentGenre(genre));
+              dispatch(setRenderedFilmsCount(FILM_COUNT_PER_STEP));
             }}
           >
             {genre}
