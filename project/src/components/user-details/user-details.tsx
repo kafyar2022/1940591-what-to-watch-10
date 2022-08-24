@@ -1,16 +1,18 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
-import { useAppDispatch } from '../../hooks';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getUser } from '../../services/user';
 import { logoutAction } from '../../store/api-action';
-import { IsAuthorized } from '../../util';
+import { getAuthorizationStatus } from '../../store/user-slice/selector';
 
 function UserDetails(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = getUser();
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
-    !IsAuthorized()
+    authorizationStatus === AuthorizationStatus.NoAuth
       ?
       <div className="user-block">
         <Link className="user-block__link" to={AppRoute.Login}>Sign in</Link>
@@ -39,4 +41,4 @@ function UserDetails(): JSX.Element {
   );
 }
 
-export default UserDetails;
+export default memo(UserDetails);

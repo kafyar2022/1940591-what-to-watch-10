@@ -59,3 +59,8 @@ export const EmptyFilm = {
   released: 0,
   isFavorite: false,
 };
+
+export enum NameSpace {
+  User = 'USER',
+  Films = 'FILMS',
+}

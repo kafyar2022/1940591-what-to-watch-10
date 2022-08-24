@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchFilmReviews } from '../../../../store/api-action';
+import { getFilmReviews } from '../../../../store/films-slice/selector';
 import { Film } from '../../../../types/film';
 import { Review } from '../../../../types/reviews';
 
@@ -11,7 +12,7 @@ type FilmReviewsProps = {
 
 function FilmReviews({ film }: FilmReviewsProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const { filmReviews } = useAppSelector((state) => state);
+  const filmReviews = useAppSelector(getFilmReviews);
   const firstHalf = filmReviews.filter((_, index) => index % 2 === 0);
   const secondHalf = filmReviews.filter((_, index) => index % 2 === 1);
 

@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { generatePath, Link, useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../../const';
+import { AppRoute, AuthorizationStatus } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { fetchPromoFilm } from '../../../store/api-action';
-import { IsAuthorized } from '../../../util';
-import MainLogo from '../../main-logo/main-logo';
+import { getPromoFilm } from '../../../store/films-slice/selector';
+import { getAuthorizationStatus } from '../../../store/user-slice/selector';
 import ToggleFavoriteButton from '../../toggle-favorite-button/toggle-favorite-button';
-import UserDetails from '../../user-details/user-details';
 import PromoFilmLoading from './promo-film-loading';
 
-function PromoFilm(): JSX.Element {
+type PromoFilmProps = {
+  children: JSX.Element;
+}
+
+function PromoFilm({ children }: PromoFilmProps): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { promoFilm } = useAppSelector((state) => state);
-  const isAuthorized = IsAuthorized();
+  const promoFilm = useAppSelector(getPromoFilm);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     dispatch(fetchPromoFilm());
@@ -31,11 +34,7 @@ function PromoFilm(): JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <MainLogo />
-
-          <UserDetails />
-        </header>
+        {children}
 
         <div className="film-card__wrap">
           <div className="film-card__info">
@@ -63,7 +62,7 @@ function PromoFilm(): JSX.Element {
                   <span>Play</span>
                 </button>
                 {
-                  isAuthorized
+                  authorizationStatus === AuthorizationStatus.Auth
                     ?
                     <ToggleFavoriteButton film={promoFilm} />
                     :
@@ -82,4 +81,4 @@ function PromoFilm(): JSX.Element {
   );
 }
 
-export default PromoFilm;
+export default memo(PromoFilm);

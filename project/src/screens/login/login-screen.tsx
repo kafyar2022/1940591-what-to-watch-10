@@ -1,12 +1,15 @@
 import { Navigate } from 'react-router-dom';
 import LoginForm from '../../components/login-form/login-form';
 import MainLogo from '../../components/main-logo/main-logo';
-import { AppRoute } from '../../const';
-import { IsAuthorized } from '../../util';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-slice/selector';
 
 function LoginScreen(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   return (
-    IsAuthorized()
+    authorizationStatus === AuthorizationStatus.Auth
       ?
       <Navigate to={AppRoute.Main} />
       :

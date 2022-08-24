@@ -1,16 +1,14 @@
-import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { generatePath, useNavigate } from 'react-router-dom';
-import { AppRoute, VIDEO_PLAY_TIME_DELAY } from '../../const';
-import { resetRenderedFilmsCount } from '../../store/action';
+import { memo, useRef, useState } from 'react';
+import { VIDEO_PLAY_TIME_DELAY } from '../../const';
 import { Film } from '../../types/film';
 import VideoPlayer from '../video-player/video-player';
 
 type FilmCardProps = {
   film: Film;
+  cardClickHandler: (film: Film) => void;
 }
 
-function FilmCard({ film }: FilmCardProps): JSX.Element {
+function FilmCard({ film, cardClickHandler }: FilmCardProps): JSX.Element {
   const [isPlaying, setIsPlaying] = useState(false);
   const timerId = useRef<NodeJS.Timeout | null>(null);
 
@@ -20,18 +18,12 @@ function FilmCard({ film }: FilmCardProps): JSX.Element {
     setIsPlaying(false);
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   return (
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={smallFilmCardMouseEnterHandler}
       onMouseLeave={smallFilmCardMouseLeavehandler}
-      onClick={() => {
-        dispatch(resetRenderedFilmsCount());
-        navigate(generatePath(AppRoute.Film, { id: String(film.id) }));
-      }}
+      onClick={() => cardClickHandler(film)}
     >
       <div className="small-film-card__image">
         <VideoPlayer film={film} isPlaying={isPlaying} />
@@ -44,4 +36,4 @@ function FilmCard({ film }: FilmCardProps): JSX.Element {
   );
 }
 
-export default FilmCard;
+export default memo(FilmCard);

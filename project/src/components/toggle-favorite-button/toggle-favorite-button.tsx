@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoriteFilms, toggleFavorite } from '../../store/api-action';
+import { fetchFavoriteFilms, toggleFilmFavorite } from '../../store/api-action';
+import { getFavoriteFilms } from '../../store/films-slice/selector';
 import { Film } from '../../types/film';
 
 type ToggleFavoriteButtonProps = {
@@ -9,7 +10,7 @@ type ToggleFavoriteButtonProps = {
 
 function ToggleFavoriteButton({ film }: ToggleFavoriteButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const { favoriteFilms } = useAppSelector((state) => state);
+  const favoriteFilms = useAppSelector(getFavoriteFilms);
 
   useEffect(() => {
     dispatch(fetchFavoriteFilms());
@@ -19,7 +20,7 @@ function ToggleFavoriteButton({ film }: ToggleFavoriteButtonProps): JSX.Element 
     <button
       className="btn btn--list film-card__button"
       type="button"
-      onClick={() => dispatch(toggleFavorite({
+      onClick={() => dispatch(toggleFilmFavorite({
         filmId: film.id,
         status: Number(!film.isFavorite),
       }))}

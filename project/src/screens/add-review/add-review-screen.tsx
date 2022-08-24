@@ -1,13 +1,14 @@
 import { generatePath, Link, useParams } from 'react-router-dom';
-import FormReview from '../../components/form-review/form-review';
+import FormReview from '../../components/UI/form-review/form-review';
 import MainLogo from '../../components/main-logo/main-logo';
 import UserDetails from '../../components/user-details/user-details';
 import { AppRoute } from '../../const';
 import { useAppSelector } from '../../hooks';
+import { getCurrentFilm } from '../../store/films-slice/selector';
 import NotFoundScreen from '../not-found/not-found';
 
 function AddReviewScreen(): JSX.Element {
-  const { currentFilm } = useAppSelector((state) => state);
+  const currentFilm = useAppSelector(getCurrentFilm);
   const params = useParams();
 
   return (

@@ -10,11 +10,12 @@ import PlayerScreen from '../../screens/player/player-screen';
 import HistoryRouter from '../history-route/history-route';
 import PrivateRoute from '../private-route/private-route';
 import LoginScreen from '../../screens/login/login-screen';
-import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import LoadingScreen from '../../screens/loading-screen/loading-screen';
 import FilmScreen from '../../screens/film/film-screen';
+import { getAuthorizationStatus } from '../../store/user-slice/selector';
 
 function App(): JSX.Element {
-  const { authorizationStatus } = useAppSelector((state) => state);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     authorizationStatus === AuthorizationStatus.Unknown
