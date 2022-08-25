@@ -37,7 +37,7 @@ function MyListScreen(): JSX.Element {
           <p>© 2022 What to watch Ltd.</p>
         </div>
       </footer>
-    </div >
+    </div>
   );
 }
 
