@@ -589,7 +589,6 @@ main {
 
 .film-card--full {
   padding-bottom: 45px;
-  min-height: 100vh
 }
 
 .film-card__hero {
@@ -952,7 +951,8 @@ main {
   height: 100%;
   -o-object-fit: cover;
   font-family: "object-fit:cover";
-  object-fit: cover
+  object-fit: cover;
+  background-color: #1a1a1a;
 }
 
 .player__exit {
