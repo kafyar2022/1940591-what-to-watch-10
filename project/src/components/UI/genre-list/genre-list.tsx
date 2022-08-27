@@ -1,4 +1,4 @@
-import { DEFAULT_GENRE, FILM_COUNT_PER_STEP } from '../../../const';
+import { DEFAULT_GENRE, FILM_COUNT_PER_STEP, MAX_GENRES_COUNT } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { setCurrentGenre, setRenderedFilmsCount } from '../../../store/films-slice/films-slice';
 import { getCurrentGenre, getFilms } from '../../../store/films-slice/selector';
@@ -9,7 +9,7 @@ function GenreList(): JSX.Element {
   const films = useAppSelector(getFilms);
   const genres = new Set<string>();
 
-  films.forEach((film) => genres.add(film.genre));
+  films.forEach((film) => genres.size <= MAX_GENRES_COUNT && genres.add(film.genre));
 
   return (
     <ul className="catalog__genres-list">

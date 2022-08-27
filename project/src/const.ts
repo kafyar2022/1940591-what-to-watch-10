@@ -3,6 +3,7 @@ export const VIDEO_PLAY_TIME_DELAY = 1000;
 export const DEFAULT_GENRE = 'All genres';
 export const MAX_COMMENT_LENGTH = 400;
 export const MIM_COMMENT_LENGTH = 50;
+export const MAX_GENRES_COUNT = 9;
 
 
 export enum AppRoute {

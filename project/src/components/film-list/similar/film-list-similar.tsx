@@ -1,22 +1,25 @@
 import { Fragment, memo, useCallback } from 'react';
 import Skeleton from 'react-loading-skeleton';
-import { FILM_COUNT_PER_STEP } from '../../../const';
+import { AppRoute, FILM_COUNT_PER_STEP } from '../../../const';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import LoadMoreButton from '../../load-more-button/load-more-button';
 import 'react-loading-skeleton/dist/skeleton.css';
 import FilmCard from '../../film-card/film-card';
 import { getRenderedFilmsCount, getSimilarFilms } from '../../../store/films-slice/selector';
-import { setCurrentFilm } from '../../../store/films-slice/films-slice';
 import { Film } from '../../../types/film';
+import { generatePath, useNavigate } from 'react-router-dom';
+import { setRenderedFilmsCount } from '../../../store/films-slice/films-slice';
 
 function FilmListSimilar(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const films = useAppSelector(getSimilarFilms);
   const renderedFilmsCount = useAppSelector(getRenderedFilmsCount);
 
   const cardClickHandler = useCallback((film: Film): void => {
-    dispatch(setCurrentFilm(film));
-  }, [dispatch]);
+    dispatch(setRenderedFilmsCount(FILM_COUNT_PER_STEP));
+    navigate(generatePath(AppRoute.Film, { id: String(film.id) }));
+  }, [dispatch, navigate]);
 
   return (
     <Fragment>

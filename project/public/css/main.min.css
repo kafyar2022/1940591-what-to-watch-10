@@ -589,6 +589,7 @@ main {
 
 .film-card--full {
   padding-bottom: 45px;
+  min-height: 100vh;
 }
 
 .film-card__hero {
@@ -1445,7 +1446,8 @@ main {
 
 .user-block__avatar,
 .user-block__link {
-  cursor: pointer
+  cursor: pointer;
+  display: block;
 }
 
 .user-page {

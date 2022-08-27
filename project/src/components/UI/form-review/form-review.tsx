@@ -32,11 +32,6 @@ function FormReview({ film }: FormReviewProps): JSX.Element {
       comment: form.comment,
       rating: form.rating,
     }));
-
-    setForm({
-      comment: '',
-      rating: 0,
-    });
   };
 
   const createRatingStars = (): JSX.Element[] => Array.from({ length: maxRating }, (_, i) => {

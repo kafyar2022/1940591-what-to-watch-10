@@ -20,9 +20,12 @@ function UserDetails(): JSX.Element {
       :
       <ul className="user-block">
         <li className="user-block__item">
-          <div className="user-block__avatar">
+          <Link
+            className="user-block__avatar"
+            to={AppRoute.MyList}
+          >
             <img src={user.avatarUrl} alt={user.name} width={63} height={63} />
-          </div>
+          </Link>
         </li>
 
         <li className="user-block__item">
